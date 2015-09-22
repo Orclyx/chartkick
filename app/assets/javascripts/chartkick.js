@@ -609,9 +609,10 @@
           var options = jsOptions(chart.data, chart.options);
           var data = createDataTable(chart.data, chart.options.discrete ? "string" : "datetime");
           chart.chart = new google.visualization.LineChart(chart.element);
-          if (typeof options.readyCallback !== 'undefined') {
-            var callback = window[options.readyCallback];
+          if (typeof chart.options.readyCallback !== 'undefined') {
+            var callback = window[chart.options.readyCallback];
             google.visualization.events.addListener(chart.chart, 'ready', callback());
+            delete chart.options.readyCallback;
             delete options.readyCallback;
           }
           resize(function () {
