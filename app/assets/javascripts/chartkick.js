@@ -610,8 +610,7 @@
           var data = createDataTable(chart.data, chart.options.discrete ? "string" : "datetime");
           chart.chart = new google.visualization.LineChart(chart.element);
           if (typeof chart.options.readyCallback !== 'undefined') {
-            var callback = window[chart.options.readyCallback];
-            google.visualization.events.addListener(chart.chart, 'ready', callback());
+            google.visualization.events.addListener(chart.chart, 'ready', window[chart.options.readyCallback]());
             delete chart.options.readyCallback;
             delete options.readyCallback;
           }
